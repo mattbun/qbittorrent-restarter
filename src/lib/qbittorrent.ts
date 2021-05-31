@@ -50,7 +50,6 @@ export class QBittorrentClient {
         username: this.username,
         password: this.password,
       },
-      headers: this.getHeaders(),
       responseType: 'text',
     });
 

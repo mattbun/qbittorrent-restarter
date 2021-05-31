@@ -53,10 +53,6 @@ describe('qbittorrent client', () => {
             username: connectionOptions.username,
             password: connectionOptions.password,
           },
-          headers: {
-            Referer: client.baseUrl,
-            Origin: client.baseUrl,
-          },
           responseType: 'text',
         }
       );
