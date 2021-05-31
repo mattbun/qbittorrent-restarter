@@ -29,8 +29,8 @@ jobs:
           context: .
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm/v7,linux/arm64
-          push: false # TODO be sure to update tags below as well
+          push: true
           tags: |
-            mattbun/qbittorrent-restarter:latest
-            mattbun/qbittorrent-restarter:main
-            mattbun/qbittorrent-restarter:${{ github.event.release.tag_name }}
+            ${{ github.repository }}:latest
+            ${{ github.repository }}:main
+            ${{ github.repository }}:${{ github.event.release.tag_name }}
