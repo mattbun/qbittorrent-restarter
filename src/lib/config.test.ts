@@ -8,6 +8,8 @@ describe('readConfig', () => {
       QBITTORRENT_PROTOCOL: 'abcd',
       QBITTORRENT_USERNAME: 'some user',
       QBITTORRENT_PASSWORD: 'some secret password',
+      PUSHOVER_USER: 'some pushover user',
+      PUSHOVER_TOKEN: 'some pushover token',
       SCHEDULE: '* * * * *',
       CONTAINERS: 'some_container',
     };
@@ -21,6 +23,10 @@ describe('readConfig', () => {
         protocol: 'abcd',
         username: 'some user',
         password: 'some secret password',
+      },
+      pushover: {
+        user: 'some pushover user',
+        token: 'some pushover token',
       },
       options: {
         schedule: '* * * * *',

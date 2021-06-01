@@ -10,6 +10,11 @@ export type QBittorrentConfig = {
   password: string;
 };
 
+export type PushoverConfig = {
+  user: string;
+  token: string;
+};
+
 export type Options = {
   schedule: string;
   containers: Array<string>;
@@ -17,6 +22,7 @@ export type Options = {
 
 export type Config = {
   qbittorrent: QBittorrentConfig;
+  pushover: PushoverConfig;
   options: Options;
 };
 
@@ -30,6 +36,10 @@ export function readConfig(): Config {
         parseInt(process.env.QBITTORRENT_PORT, 10) || QBITTORRENT_DEFAULT_PORT,
       username: process.env.QBITTORRENT_USERNAME,
       password: process.env.QBITTORRENT_PASSWORD,
+    },
+    pushover: {
+      user: process.env.PUSHOVER_USER,
+      token: process.env.PUSHOVER_TOKEN,
     },
     options: {
       schedule: process.env.SCHEDULE,

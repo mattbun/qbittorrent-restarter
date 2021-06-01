@@ -2,15 +2,23 @@ import * as bluebird from 'bluebird';
 
 import { QBittorrentClient } from './qbittorrent';
 import { DockerClient } from './docker';
+import { PushoverClient } from './pushover';
 
 export async function checkAndRestart(
-  qbittorrentClient: QBittorrentClient,
-  dockerClient: DockerClient,
+  {
+    qbittorrent,
+    docker,
+    pushover,
+  }: {
+    qbittorrent: QBittorrentClient;
+    docker: DockerClient;
+    pushover?: PushoverClient;
+  },
   containers: Array<string>
 ) {
-  await qbittorrentClient.connect();
+  await qbittorrent.connect();
 
-  const connectionStatus = await qbittorrentClient.getConnectionStatus();
+  const connectionStatus = await qbittorrent.getConnectionStatus();
 
   if (connectionStatus === 'connected') {
     console.info('qbittorrent appears to be connected, doing nothing.');
@@ -18,11 +26,20 @@ export async function checkAndRestart(
   }
 
   console.info(
-    `qbittorrent connection status is "${connectionStatus}", restarting containers...`
+    `qbittorrent connection status is "${connectionStatus}", restarting container(s)...`
   );
+
+  if (pushover) {
+    await pushover.sendPush({
+      title: 'qbittorrent connection issue detected, restarting containers',
+      message: `qbittorrent connection status is "${connectionStatus}". Restarting container(s): ${containers.join(
+        ', '
+      )}`,
+    });
+  }
 
   await bluebird.each(containers, async (container) => {
     console.info(`Restarting ${container}...`);
-    await dockerClient.restartContainer(container);
+    await docker.restartContainer(container);
   });
 }
