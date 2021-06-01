@@ -1,6 +1,6 @@
 # qbittorrent-restarter
 
-![Docker Image Version (latest semver)](https://img.shields.io/docker/v/mattbun/qbittorrent-restarter?label=docker&sort=semver)
+[![Docker Image Version (latest semver)](https://img.shields.io/docker/v/mattbun/qbittorrent-restarter?label=latest%20docker%20tag&sort=semver)](https://hub.docker.com/r/mattbun/qbittorrent-restarter)
 
 Restart docker containers when a qbittorrent instance isn't working.
 
