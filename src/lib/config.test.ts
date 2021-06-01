@@ -12,6 +12,7 @@ describe('readConfig', () => {
       PUSHOVER_TOKEN: 'some pushover token',
       SCHEDULE: '* * * * *',
       CONTAINERS: 'some_container',
+      DELAY_BETWEEN_RESTARTS_S: '30',
     };
 
     const result = readConfig();
@@ -31,6 +32,7 @@ describe('readConfig', () => {
       options: {
         schedule: '* * * * *',
         containers: ['some_container'],
+        delaySeconds: 30,
       },
     });
   });
@@ -73,5 +75,13 @@ describe('readConfig', () => {
     const result = readConfig();
 
     expect(result.options.containers).toStrictEqual([]);
+  });
+
+  it('defaults to zero if DELAY_BETWEEN_RESTARTS_S is unset', () => {
+    process.env.DELAY_BETWEEN_RESTARTS_S = undefined;
+
+    const result = readConfig();
+
+    expect(result.options.delaySeconds).toStrictEqual(0);
   });
 });

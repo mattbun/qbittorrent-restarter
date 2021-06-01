@@ -23,10 +23,10 @@ if (options.schedule) {
   console.info(`Running on schedule "${options.schedule}"`);
 
   cron.schedule(options.schedule, () => {
-    checkAndRestart({ qbittorrent, docker, pushover }, options.containers);
+    checkAndRestart({ qbittorrent, docker, pushover }, options);
   });
 } else {
   console.info('No SCHEDULE specified, running once');
 
-  checkAndRestart({ qbittorrent, docker, pushover }, options.containers);
+  checkAndRestart({ qbittorrent, docker, pushover }, options);
 }

@@ -14,7 +14,13 @@ export async function checkAndRestart(
     docker: DockerClient;
     pushover?: PushoverClient;
   },
-  containers: Array<string>
+  {
+    containers,
+    delaySeconds,
+  }: {
+    containers: Array<string>;
+    delaySeconds: number;
+  }
 ) {
   await qbittorrent.connect();
 
@@ -38,7 +44,14 @@ export async function checkAndRestart(
     });
   }
 
-  await bluebird.each(containers, async (container) => {
+  await bluebird.each(containers, async (container, index) => {
+    if (index !== 0 && delaySeconds > 0) {
+      console.info(
+        `Waiting ${delaySeconds} seconds before restarting the next container`
+      );
+      await bluebird.delay(delaySeconds * 1000);
+    }
+
     console.info(`Restarting ${container}...`);
     await docker.restartContainer(container);
   });

@@ -41,6 +41,7 @@ Configuration options are passed via environment variables. Available options ar
 |---|---|---|
 | SCHEDULE | | Cron string to run on a schedule, see [here](https://www.npmjs.com/package/node-cron) for syntax. If not provided, qbittorrent-restarter will run once and exit |
 | CONTAINERS | | A comma-separated list of containers to restart. Containers will be restarted in the same order |
+| DELAY_BETWEEN_RESTARTS_S | `0` | Delay for a certain amount of time between restarting containers, useful if one container depends on another |
 | QBITTORRENT_HOST | `localhost` | The hostname or IP address of the qbittorrent server  |
 | QBITTORRENT_PORT | `8080` | The port to use when communicating with the qbittorrent server |
 | QBITTORRENT_PROTOCOL | `http` | The protocol to use when communicating with the qbittorrent server (`http` or `https`) |

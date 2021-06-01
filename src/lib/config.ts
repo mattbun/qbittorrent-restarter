@@ -18,6 +18,7 @@ export type PushoverConfig = {
 export type Options = {
   schedule: string;
   containers: Array<string>;
+  delaySeconds: number;
 };
 
 export type Config = {
@@ -46,6 +47,7 @@ export function readConfig(): Config {
       containers: (process.env.CONTAINERS || '')
         .split(',')
         .filter((container) => !!container), // Don't include empty strings
+      delaySeconds: parseInt(process.env.DELAY_BETWEEN_RESTARTS_S, 10) || 0,
     },
   };
 
