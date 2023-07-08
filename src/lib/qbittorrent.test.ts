@@ -36,7 +36,7 @@ describe('qbittorrent client', () => {
 
   describe('connect', () => {
     it('authenticates with qbittorrent', async () => {
-      jest.spyOn(got, 'get').mockResolvedValue({
+      jest.spyOn(got, 'post').mockResolvedValue({
         headers: {
           'set-cookie': ['some cookie'],
         },
@@ -45,11 +45,11 @@ describe('qbittorrent client', () => {
 
       await client.connect();
 
-      expect(got.get).toHaveBeenCalledTimes(1);
-      expect(got.get).toHaveBeenCalledWith(
+      expect(got.post).toHaveBeenCalledTimes(1);
+      expect(got.post).toHaveBeenCalledWith(
         `${client.baseUrl}/api/v2/auth/login`,
         {
-          searchParams: {
+          form: {
             username: connectionOptions.username,
             password: connectionOptions.password,
           },
@@ -60,7 +60,7 @@ describe('qbittorrent client', () => {
     });
 
     it('throws an error if authentication failed', async () => {
-      jest.spyOn(got, 'get').mockResolvedValue({
+      jest.spyOn(got, 'post').mockResolvedValue({
         headers: {},
       });
       const client = new QBittorrentClient(connectionOptions);

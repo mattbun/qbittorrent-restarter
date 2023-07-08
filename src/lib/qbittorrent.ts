@@ -45,8 +45,8 @@ export class QBittorrentClient {
   }
 
   async connect() {
-    const response = await got.get(`${this.baseUrl}/api/v2/auth/login`, {
-      searchParams: {
+    const response = await got.post(`${this.baseUrl}/api/v2/auth/login`, {
+      form: {
         username: this.username,
         password: this.password,
       },
