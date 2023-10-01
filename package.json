@@ -20,7 +20,7 @@
     "pushover-notifications": "1.2.2"
   },
   "devDependencies": {
-    "@types/bluebird": "3.5.38",
+    "@types/bluebird": "3.5.39",
     "@types/dockerode": "3.3.19",
     "@types/jest": "26.0.24",
     "@types/node": "18.16.19",
