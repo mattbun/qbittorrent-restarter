@@ -17,7 +17,7 @@
     "dockerode": "3.3.5",
     "got": "11.8.6",
     "node-cron": "3.0.3",
-    "pushover-notifications": "1.2.2"
+    "pushover-notifications": "1.2.3"
   },
   "devDependencies": {
     "@types/bluebird": "3.5.42",
