@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@types/bluebird": "3.5.42",
-    "@types/dockerode": "3.3.47",
+    "@types/dockerode": "4.0.1",
     "@types/jest": "26.0.24",
     "@types/node": "18.19.130",
     "jest": "26.6.3",
